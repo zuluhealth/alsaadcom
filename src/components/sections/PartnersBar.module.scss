@@ -1,0 +1,88 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.section {
+  overflow: hidden;
+  border-top: 1px solid rgba($white, 0.04);
+  border-bottom: 1px solid rgba($white, 0.04);
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.container {
+  @include container;
+}
+
+.title {
+  margin-bottom: 40px;
+  text-align: center;
+  font-family: $font-mono;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba($grey-400, 0.6);
+}
+
+.marqueeWrap {
+  position: relative;
+}
+
+.fadeLeft {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  height: 100%;
+  width: 128px;
+  background: linear-gradient(to right, $navy-950, transparent);
+}
+
+.fadeRight {
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  height: 100%;
+  width: 128px;
+  background: linear-gradient(to left, $navy-950, transparent);
+}
+
+.marqueeOuter {
+  display: flex;
+}
+
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  gap: 72px;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.partner {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  opacity: 0.45;
+  transition: opacity 300ms $ease-out-expo;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.partnerLogo {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+}

@@ -1,0 +1,128 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// Base
+.base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: $font-heading;
+  text-decoration: none;
+}
+
+// Variants
+.primary {
+  background: $white;
+  color: $navy-950;
+  font-weight: 600;
+  transition: all 300ms $ease-out-expo;
+
+  &:hover {
+    background: $grey-100;
+    box-shadow: 0 8px 24px rgba($white, 0.1);
+  }
+}
+
+.outline {
+  position: relative;
+  border: 1px solid rgba($white, 0.15);
+  color: $white;
+  font-weight: 500;
+  overflow: hidden;
+  transition: all 300ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.3);
+    background: rgba($white, 0.05);
+  }
+}
+
+.ghost {
+  color: $white;
+  font-weight: 500;
+  transition: all 300ms $ease-out-expo;
+
+  &:hover {
+    background: rgba($white, 0.05);
+  }
+}
+
+.link {
+  color: $white;
+  font-weight: 500;
+  position: relative;
+  display: inline-flex;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 0;
+    background: rgba($white, 0.5);
+    transition: all 500ms $ease-out-expo;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+// Sizes
+.sm {
+  height: 36px;
+  padding: 0 20px;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: $radius-sm;
+  gap: 6px;
+}
+
+.md {
+  height: 44px;
+  padding: 0 24px;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  border-radius: $radius-md;
+  gap: 8px;
+}
+
+.lg {
+  height: 52px;
+  padding: 0 28px;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  border-radius: $radius-md;
+  gap: 10px;
+}
+
+// Outline fill overlay
+.outlineFill {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transform-origin: left;
+  transform: scaleX(0);
+  background: $white;
+  transition: transform 500ms $ease-out-expo;
+}
+
+.group {
+  &:hover .outlineFill {
+    transform: scaleX(1);
+  }
+}
+
+// Inner content z-index
+.content {
+  position: relative;
+  z-index: 10;
+}
+
+// Wrapper for motion div (link variant)
+.wrapper {
+  display: inline-flex;
+}

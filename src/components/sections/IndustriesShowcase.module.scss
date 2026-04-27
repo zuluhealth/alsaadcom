@@ -1,0 +1,92 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.section {
+  @include section-padding;
+}
+
+.container {
+  @include container;
+}
+
+.header {
+  margin-bottom: 56px;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: 12px;
+}
+
+.heading {
+  @include heading-section;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+
+  @include md {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($white, 0.06);
+  background: rgba($white, 0.02);
+  padding: 24px;
+  transition: all 500ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($blue-500, 0.2);
+    background: rgba($white, 0.04);
+  }
+}
+
+.hoverGlow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 500ms $ease-out-expo;
+
+  .card:hover & {
+    opacity: 1;
+  }
+}
+
+.icon {
+  position: relative;
+  color: rgba($blue-400, 0.7);
+  transition: all 500ms $ease-out-expo;
+
+  .card:hover & {
+    color: $blue-400;
+  }
+}
+
+.cardContent {
+  position: relative;
+}
+
+.cardTitle {
+  font-family: $font-heading;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: $white;
+}
+
+.cardDescription {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.625;
+  color: rgba($grey-400, 0.8);
+}

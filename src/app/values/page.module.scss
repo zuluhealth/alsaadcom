@@ -1,0 +1,253 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Shared ───
+
+.dividerWrap {
+  @include container;
+}
+
+.subtleDivider {
+  @include divider;
+}
+
+// ─── Hero ───
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: $navy-950;
+  padding-bottom: 96px;
+  padding-top: 144px;
+
+  @include md {
+    padding-bottom: 128px;
+    padding-top: 176px;
+  }
+}
+
+.heroWave {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.heroBgGradient {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.heroBgDots {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.heroBgDotsInner {
+  height: 100%;
+  width: 100%;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 2;
+  @include container;
+}
+
+.heroEyebrow {
+  @include eyebrow;
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  @include heading-display;
+  max-width: 48rem;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.heroDesc {
+  @include body-text;
+  margin-top: 24px;
+  max-width: 42rem;
+}
+
+// ─── Vision ───
+
+.vision {
+  background: $navy-950;
+  @include section-padding;
+}
+
+.visionInner {
+  @include container;
+}
+
+.visionEyebrow {
+  @include eyebrow;
+  margin-bottom: 24px;
+}
+
+.visionBlockquote {
+  max-width: 56rem;
+}
+
+.visionQuote {
+  font-family: $font-heading;
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: $white;
+}
+
+.visionBody {
+  margin-top: 32px;
+  max-width: 42rem;
+}
+
+.visionBodyText {
+  @include body-text;
+}
+
+// ─── Mission ───
+
+.mission {
+  border-top: 1px solid rgba($white, 0.04);
+  background: rgba($navy-900, 0.5);
+  @include section-padding;
+}
+
+.missionInner {
+  @include container;
+}
+
+.missionGrid {
+  display: grid;
+  gap: 48px;
+
+  @include lg {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px;
+  }
+}
+
+.missionEyebrow {
+  @include eyebrow;
+  margin-bottom: 24px;
+}
+
+.missionHeading {
+  @include heading-section;
+}
+
+.missionText {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @include body-text;
+}
+
+// ─── Values Cards ───
+
+.valuesSection {
+  background: $navy-950;
+  @include section-padding;
+}
+
+.valuesInner {
+  @include container;
+}
+
+.valuesHeader {
+  margin-bottom: 48px;
+}
+
+.valuesEyebrow {
+  @include eyebrow;
+  margin-bottom: 12px;
+}
+
+.valuesHeading {
+  @include heading-section;
+}
+
+.valuesGrid {
+  display: grid;
+  gap: 24px;
+
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.valueCard {
+  border-radius: $radius-lg;
+  border: 1px solid rgba($white, 0.06);
+  background: rgba($white, 0.02);
+  padding: 32px;
+  transition: all 300ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.1);
+    background: rgba($white, 0.04);
+  }
+
+  @include md {
+    padding: 40px;
+  }
+}
+
+.valueIcon {
+  margin-bottom: 24px;
+  display: flex;
+  height: 56px;
+  width: 56px;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($white, 0.06);
+  background: rgba($white, 0.03);
+}
+
+.valueTitle {
+  margin-bottom: 16px;
+  font-family: $font-heading;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: $white;
+}
+
+.valueDesc {
+  @include small-text;
+}
+
+.complianceNote {
+  margin-top: 40px;
+  padding: 20px 24px;
+  border-radius: $radius-md;
+  border: 1px solid rgba($white, 0.06);
+  background: rgba($white, 0.02);
+  font-family: $font-heading;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba($grey-300, 0.85);
+  text-align: center;
+
+  @include md {
+    margin-top: 56px;
+    font-size: 15px;
+  }
+}
+
+// ─── Utility ───
+
+.iconBlue {
+  color: rgba($blue-400, 0.8);
+}

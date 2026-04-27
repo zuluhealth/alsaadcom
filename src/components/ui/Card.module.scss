@@ -1,0 +1,14 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.card {
+  position: relative;
+  overflow: hidden;
+  @include glass-card;
+  padding: 24px;
+}
+
+.linkWrapper {
+  display: block;
+  text-decoration: none;
+}

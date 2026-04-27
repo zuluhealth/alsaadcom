@@ -1,0 +1,169 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.section {
+  @include section-padding;
+}
+
+.container {
+  @include container;
+}
+
+.headerRow {
+  margin-bottom: 56px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: 12px;
+}
+
+.heading {
+  @include heading-section;
+}
+
+.viewAllDesktop {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: $grey-400;
+  transition: color 300ms $ease-out-expo;
+
+  @include md {
+    display: flex;
+  }
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($white, 0.06);
+  background: rgba($white, 0.02);
+  padding: 28px;
+  transition: all 500ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.1);
+    background: rgba($white, 0.04);
+  }
+}
+
+.cardGlow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 500ms $ease-out-expo;
+
+  .card:hover & {
+    opacity: 1;
+  }
+}
+
+.cardBody {
+  position: relative;
+}
+
+.meta {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.category {
+  border-radius: $radius-sm;
+  background: rgba($white, 0.06);
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba($blue-400, 0.8);
+}
+
+.date {
+  font-size: 11px;
+  color: rgba($grey-400, 0.6);
+}
+
+.cardTitle {
+  font-family: $font-heading;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: rgba($white, 0.9);
+  transition: color 300ms $ease-out-expo;
+
+  .card:hover & {
+    color: $white;
+  }
+}
+
+.readMore {
+  position: relative;
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba($grey-400, 0.6);
+  transition: color 300ms $ease-out-expo;
+
+  .card:hover & {
+    color: $grey-300;
+  }
+}
+
+.readMoreArrow {
+  transition: transform 500ms $ease-out-expo;
+
+  .card:hover & {
+    transform: translate(2px, -2px);
+  }
+}
+
+.viewAllMobile {
+  margin-top: 40px;
+  text-align: center;
+
+  @include md {
+    display: none;
+  }
+}
+
+.viewAllMobileLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: $grey-400;
+
+  &:hover {
+    color: $white;
+  }
+}

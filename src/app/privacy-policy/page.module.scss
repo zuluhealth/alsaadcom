@@ -1,0 +1,91 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Shared ───
+
+.dividerWrap {
+  @include container;
+}
+
+.subtleDivider {
+  @include divider;
+}
+
+// ─── Hero ───
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: $navy-950;
+  padding-bottom: 96px;
+  padding-top: 144px;
+
+  @include md {
+    padding-bottom: 128px;
+    padding-top: 176px;
+  }
+}
+
+.heroInner {
+  @include container;
+}
+
+.heroEyebrow {
+  @include eyebrow;
+}
+
+.heroTitle {
+  @include heading-display;
+  margin-top: 16px;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.heroDate {
+  margin-top: 24px;
+  @include small-text;
+}
+
+// ─── Content ───
+
+.contentSection {
+  background: $navy-950;
+  @include section-padding;
+}
+
+.contentInner {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $container-px;
+  padding-right: $container-px;
+
+  @include md {
+    padding-left: $container-px-md;
+    padding-right: $container-px-md;
+  }
+}
+
+.intro {
+  margin-bottom: 48px;
+  @include body-text;
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.sectionTitle {
+  font-family: $font-heading;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: $white;
+}
+
+.sectionParagraph {
+  margin-top: 16px;
+  @include body-text;
+}

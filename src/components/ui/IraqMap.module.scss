@@ -1,0 +1,56 @@
+@use "../../styles/variables" as *;
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+  width: 280px;
+  height: 266px;
+
+  @media (max-width: 767px) {
+    width: 200px;
+    height: 190px;
+  }
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.outline {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: drawIn 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.marker {
+  animation: pulse 2.8s ease-out infinite;
+  transform-origin: 235.5px 195.1px;
+}
+
+@keyframes drawIn {
+  from {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

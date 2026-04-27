@@ -1,0 +1,95 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.wrapper {
+  // outer wrapper receives className prop, no extra styles needed
+}
+
+.link {
+  display: block;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  border-radius: $radius-lg;
+}
+
+.left {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  background: $white;
+  padding: 40px;
+
+  @include md {
+    padding: 56px;
+  }
+
+  @include lg {
+    padding: 64px;
+  }
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: clamp(1.5rem, 3.5vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: $navy-950;
+}
+
+.right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-shrink: 0;
+  width: 200px;
+  background: $navy-900;
+  padding: 32px;
+
+  @include md {
+    width: 320px;
+    padding: 40px;
+  }
+}
+
+.gradientOverlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+}
+
+.iconWrap {
+  position: relative;
+}
+
+.icon {
+  color: $grey-400;
+  transition: all 500ms $ease-out-expo;
+
+  .link:hover & {
+    transform: translate(4px, -4px);
+    color: $white;
+  }
+}
+
+.readMore {
+  position: relative;
+  font-family: $font-heading;
+  font-size: 20px;
+  color: rgba($white, 0.8);
+  transition: color 300ms $ease-out-expo;
+
+  @include md {
+    font-size: 28px;
+  }
+
+  .link:hover & {
+    color: $white;
+  }
+}

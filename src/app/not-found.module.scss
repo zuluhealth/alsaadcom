@@ -1,0 +1,62 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+.section {
+  position: relative;
+  display: flex;
+  min-height: 85vh;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bgEffect {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+}
+
+.inner {
+  position: relative;
+  @include container;
+  text-align: center;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: 24px;
+}
+
+.title {
+  @include heading-display;
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: -0.03em;
+}
+
+.description {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  max-width: 28rem;
+  font-size: 15px;
+  line-height: 1.625;
+  color: rgba($grey-400, 0.7);
+}
+
+.actions {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btnPrimary {
+  @include btn-primary;
+  padding: 0 32px;
+}
+
+.btnSecondary {
+  @include btn-secondary;
+  padding: 0 32px;
+}

@@ -1,0 +1,116 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.section {
+  @include container;
+}
+
+.header {
+  margin-bottom: 56px;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: 12px;
+}
+
+.heading {
+  @include heading-section;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cardLink {
+  display: block;
+  overflow: hidden;
+  border-radius: $radius-lg;
+  background: rgba($white, 0.04);
+  border: 1px solid rgba($white, 0.06);
+  backdrop-filter: blur(8px);
+  transition: all 500ms $ease-out-expo;
+
+  &:hover {
+    background: rgba($white, 0.07);
+    border-color: rgba($white, 0.10);
+  }
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  margin: 10px;
+  border-radius: $radius-md;
+  background: $navy-950;
+}
+
+.image {
+  object-fit: cover;
+  opacity: 0.45;
+  transition: all 700ms $ease-out-expo;
+
+  .cardLink:hover & {
+    transform: scale(1.05);
+    opacity: 0.6;
+  }
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+}
+
+.content {
+  padding: 16px 24px 24px;
+}
+
+.contentInner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cardTitle {
+  font-family: $font-heading;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: $white;
+
+  @include md {
+    font-size: 22px;
+  }
+}
+
+.cardDescription {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba($grey-400, 0.8);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.arrow {
+  margin-top: 4px;
+  flex-shrink: 0;
+  color: rgba($grey-400, 0.5);
+  transition: all 500ms $ease-out-expo;
+
+  .cardLink:hover & {
+    transform: translate(2px, -2px);
+    color: $white;
+  }
+}

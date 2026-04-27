@@ -1,0 +1,100 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.section {
+  position: relative;
+  overflow: hidden;
+  padding-top: 112px;
+  padding-bottom: 112px;
+
+  @include md {
+    padding-top: 144px;
+    padding-bottom: 144px;
+  }
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba($navy-950, 0.45);
+}
+
+.gradientTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 120px;
+  background: linear-gradient(to bottom, $navy-950, transparent);
+}
+
+.gradientBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 120px;
+  background: linear-gradient(to top, $navy-950, transparent);
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  @include container;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin-bottom: 24px;
+}
+
+.heading {
+  max-width: 672px;
+  font-family: $font-heading;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: $white;
+}
+
+.subtitle {
+  margin-top: 20px;
+  max-width: 512px;
+  font-size: 15px;
+  line-height: 1.625;
+  color: rgba($grey-400, 0.8);
+}
+
+.ctaWrap {
+  margin-top: 40px;
+}
+
+.ctaButton {
+  @include btn-primary;
+  gap: 10px;
+
+  svg {
+    transition: transform 300ms $ease-out-expo;
+  }
+
+  &:hover svg {
+    transform: translateX(2px);
+  }
+}

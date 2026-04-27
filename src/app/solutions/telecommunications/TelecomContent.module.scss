@@ -1,0 +1,174 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+// ─── Shared ───
+
+.dividerWrap {
+  @include container;
+}
+
+.subtleDivider {
+  @include divider;
+}
+
+// ─── Hero ───
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 96px;
+  padding-top: 144px;
+
+  @include md {
+    padding-bottom: 128px;
+    padding-top: 176px;
+  }
+}
+
+.heroBgImage {
+  position: absolute;
+  inset: 0;
+}
+
+.heroImage {
+  object-fit: cover;
+  opacity: 0.15;
+}
+
+.heroBgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba($navy-950, 0.6), rgba($navy-950, 0.8), $navy-950);
+}
+
+.heroInner {
+  position: relative;
+  @include container;
+}
+
+.breadcrumb {
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: $grey-400;
+}
+
+.breadcrumbLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 200ms $ease-out-expo;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.breadcrumbCurrent {
+  color: $white;
+}
+
+.heroEyebrow {
+  @include eyebrow;
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  @include heading-display;
+  max-width: 48rem;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+// ─── Body ───
+
+.bodySection {
+  @include section-padding;
+}
+
+.bodyInner {
+  @include container;
+}
+
+.bodyContent {
+  max-width: 48rem;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  font-size: 15px;
+  line-height: 1.85;
+  color: rgba($grey-300, 0.8);
+
+  @include md {
+    font-size: 16px;
+  }
+}
+
+// ─── CTA ───
+
+.ctaSection {
+  position: relative;
+  overflow: hidden;
+  @include section-padding;
+}
+
+.ctaBgDots {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+}
+
+.ctaBgDotsInner {
+  height: 100%;
+  width: 100%;
+}
+
+.ctaInner {
+  position: relative;
+  @include container;
+}
+
+.ctaContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ctaEyebrow {
+  @include eyebrow;
+  margin-bottom: 16px;
+}
+
+.ctaHeading {
+  @include heading-section;
+  max-width: 42rem;
+}
+
+.ctaDesc {
+  margin-top: 16px;
+  max-width: 32rem;
+  @include body-text;
+}
+
+.ctaActions {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include sm {
+    flex-direction: row;
+  }
+}
+
+.ctaBtnPrimary {
+  @include btn-primary;
+  padding: 0 28px;
+}
+
+.ctaBtnSecondary {
+  @include btn-secondary;
+  gap: 8px;
+  padding: 0 28px;
+}

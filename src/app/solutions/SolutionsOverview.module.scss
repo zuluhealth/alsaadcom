@@ -1,0 +1,212 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Shared ───
+
+.dividerWrap {
+  @include container;
+}
+
+.subtleDivider {
+  @include divider;
+}
+
+// ─── Hero ───
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 96px;
+  padding-top: 144px;
+
+  @include md {
+    padding-bottom: 128px;
+    padding-top: 176px;
+  }
+}
+
+.heroWave {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.heroBgGradient {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.heroBgDots {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.heroBgDotsInner {
+  height: 100%;
+  width: 100%;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 2;
+  @include container;
+}
+
+.heroEyebrow {
+  @include eyebrow;
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  @include heading-display;
+  max-width: 48rem;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.heroDesc {
+  @include body-text;
+  margin-top: 24px;
+  max-width: 42rem;
+}
+
+// ─── Solutions Grid ───
+
+.gridSection {
+  @include section-padding;
+}
+
+.gridInner {
+  @include container;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cardLink {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($white, 0.06);
+  background: rgba($white, 0.02);
+  padding: 32px;
+  transition: all 300ms $ease-out-expo;
+  text-decoration: none;
+
+  &:hover {
+    border-color: rgba($white, 0.1);
+    background: rgba($white, 0.04);
+  }
+
+  @include md {
+    padding: 40px;
+  }
+}
+
+.cardIconBox {
+  margin-bottom: 24px;
+  display: flex;
+  height: 48px;
+  width: 48px;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($white, 0.06);
+  background: rgba($white, 0.03);
+}
+
+.cardIcon {
+  color: rgba($blue-400, 0.8);
+  transition: transform 300ms $ease-out-expo;
+
+  .cardLink:hover & {
+    transform: scale(1.1);
+  }
+}
+
+.cardTitle {
+  @include heading-section;
+}
+
+.cardDesc {
+  margin-top: 12px;
+  @include body-text;
+}
+
+.cardCta {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: rgba($blue-400, 0.8);
+  transition: color 300ms $ease-out-expo;
+
+  .cardLink:hover & {
+    color: rgba($blue-400, 1);
+  }
+}
+
+.cardCtaArrow {
+  transition: transform 300ms $ease-out-expo;
+
+  .cardLink:hover & {
+    transform: translateX(4px);
+  }
+}
+
+// ─── CTA ───
+
+.ctaSection {
+  @include section-padding;
+}
+
+.ctaInner {
+  @include container;
+}
+
+.ctaContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ctaEyebrow {
+  @include eyebrow;
+  margin-bottom: 16px;
+}
+
+.ctaHeading {
+  @include heading-section;
+  max-width: 42rem;
+}
+
+.ctaDesc {
+  margin-top: 16px;
+  max-width: 32rem;
+  @include body-text;
+}
+
+.ctaBtn {
+  @include btn-primary;
+  margin-top: 32px;
+  padding: 0 28px;
+}

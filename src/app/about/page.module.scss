@@ -1,0 +1,101 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Shared ───
+
+.dividerWrap {
+  @include container;
+}
+
+.subtleDivider {
+  @include divider;
+}
+
+// ─── Hero ───
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 96px;
+  padding-top: 144px;
+
+  @include md {
+    padding-bottom: 128px;
+    padding-top: 176px;
+  }
+}
+
+.heroWave {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 2;
+  @include container;
+}
+
+.heroEyebrow {
+  @include eyebrow;
+  margin-bottom: 24px;
+}
+
+.heroTitle {
+  @include heading-display;
+  max-width: 56rem;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.heroDesc {
+  @include body-text;
+  margin-top: 28px;
+  max-width: 42rem;
+
+  @include md {
+    font-size: 16px;
+  }
+}
+
+// ─── Story ───
+
+.story {
+  padding-top: 80px;
+  padding-bottom: 80px;
+
+  @include md {
+    padding-top: 112px;
+    padding-bottom: 112px;
+  }
+}
+
+.storyInner {
+  @include container;
+}
+
+.storyContent {
+  max-width: 48rem;
+}
+
+.storyText {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  font-size: 15px;
+  line-height: 1.85;
+  color: rgba($grey-300, 0.8);
+
+  @include md {
+    font-size: 16px;
+  }
+}

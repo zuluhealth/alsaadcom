@@ -1,0 +1,379 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+// ─── Shared ───
+
+.dividerWrap {
+  @include container;
+}
+
+.subtleDivider {
+  @include divider;
+}
+
+// ─── Hero ───
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: $navy-950;
+  padding-bottom: 96px;
+  padding-top: 144px;
+
+  @include md {
+    padding-bottom: 128px;
+    padding-top: 176px;
+  }
+}
+
+.heroBgGradient {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.heroBgDots {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+}
+
+.heroBgDotsInner {
+  height: 100%;
+  width: 100%;
+}
+
+.heroInner {
+  position: relative;
+  @include container;
+}
+
+.heroEyebrow {
+  @include eyebrow;
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  @include heading-display;
+  max-width: 48rem;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.heroDesc {
+  @include body-text;
+  margin-top: 24px;
+  max-width: 42rem;
+}
+
+// ─── Contact Form Section ───
+
+.formSection {
+  background: $navy-950;
+  @include section-padding;
+}
+
+.formSectionInner {
+  @include container;
+}
+
+.formGrid {
+  display: grid;
+  gap: 48px;
+
+  @include lg {
+    grid-template-columns: 3fr 2fr;
+    gap: 64px;
+  }
+}
+
+.formCol {
+  @include lg {
+    grid-column: span 3;
+  }
+}
+
+// ─── Success State ───
+
+.successPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($white, 0.06);
+  background: rgba($white, 0.02);
+  padding-top: 80px;
+  padding-bottom: 80px;
+  text-align: center;
+}
+
+.successIcon {
+  margin-bottom: 20px;
+  display: flex;
+  height: 64px;
+  width: 64px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba($white, 0.06);
+  background: rgba($blue-500, 0.1);
+}
+
+.successTitle {
+  @include heading-section;
+}
+
+.successDesc {
+  margin-top: 12px;
+  max-width: 28rem;
+  @include small-text;
+}
+
+.successBtn {
+  @include btn-secondary;
+  margin-top: 32px;
+  padding: 0 28px;
+}
+
+// ─── Form ───
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formRow {
+  display: grid;
+  gap: 24px;
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: rgba($grey-400, 0.7);
+}
+
+.input {
+  @include input-field;
+  padding: 12px 16px;
+  height: auto;
+  font-size: 14px;
+
+  &::placeholder {
+    color: $grey-500;
+  }
+}
+
+.select {
+  @include input-field;
+  padding: 12px 16px;
+  height: auto;
+  font-size: 14px;
+  appearance: none;
+}
+
+.selectOption {
+  background: $navy-800;
+  color: $white;
+}
+
+.textarea {
+  @include input-field;
+  padding: 12px 16px;
+  height: auto;
+  font-size: 14px;
+  resize: none;
+
+  &::placeholder {
+    color: $grey-500;
+  }
+}
+
+.submitBtn {
+  @include btn-primary;
+  gap: 8px;
+}
+
+// ─── Info Panel ───
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include lg {
+    grid-column: span 2;
+  }
+}
+
+.infoCard {
+  border-radius: $radius-lg;
+  border: 1px solid rgba($white, 0.06);
+  background: rgba($white, 0.02);
+  padding: 24px;
+
+  @include md {
+    padding: 32px;
+  }
+}
+
+.infoCardTitle {
+  margin-bottom: 24px;
+  font-family: $font-heading;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: $white;
+}
+
+.infoCardTitleSm {
+  margin-bottom: 16px;
+  font-family: $font-heading;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: $white;
+}
+
+.contactItems {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.contactIconBox {
+  display: flex;
+  height: 40px;
+  width: 40px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($white, 0.06);
+  background: rgba($white, 0.03);
+}
+
+.contactLabel {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: rgba($grey-400, 0.7);
+}
+
+.contactLink {
+  margin-top: 2px;
+  font-size: 14px;
+  color: $white;
+  transition: color 300ms $ease-out-expo;
+  text-decoration: none;
+
+  &:hover {
+    color: $blue-400;
+  }
+}
+
+.contactValue {
+  margin-top: 2px;
+  font-size: 14px;
+  color: $white;
+}
+
+.contactSubValue {
+  margin-top: 2px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba($grey-400, 0.7);
+}
+
+// ─── Office Locations ───
+
+.officeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.officeItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.officeIcon {
+  display: flex;
+  height: 32px;
+  width: 32px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-lg;
+  border: 1px solid rgba($white, 0.06);
+  background: rgba($white, 0.03);
+}
+
+.officeCity {
+  font-size: 14px;
+  font-weight: 500;
+  color: $white;
+}
+
+.officeBadge {
+  border-radius: $radius-sm;
+  background: rgba($white, 0.06);
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba($blue-400, 0.8);
+}
+
+// ─── Business Hours ───
+
+.hoursItems {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.hoursRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hoursLabel {
+  color: rgba($grey-400, 0.7);
+}
+
+.hoursValue {
+  color: $white;
+}
+
+.hoursClosed {
+  color: $grey-500;
+}
+
+// ─── Utility ───
+
+.iconBlue {
+  color: rgba($blue-400, 0.8);
+}
+
+.iconGrey {
+  color: rgba($grey-400, 0.7);
+}

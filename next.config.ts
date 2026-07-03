@@ -1,9 +1,12 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   turbopack: {
-    root: process.cwd(),
+    root: path.resolve(__dirname),
   },
+  outputFileTracingRoot: path.resolve(__dirname),
   images: {
     remotePatterns: [
       {

@@ -44,6 +44,7 @@ export default function Footer() {
                 height={270}
                 className={s.logoImg}
               />
+              <span className={s.logoCaption}>AL SAAD TELECOM</span>
             </Link>
             <SaferTomorrowTagline size="md" className={s.tagline} />
             <p className={s.description}>

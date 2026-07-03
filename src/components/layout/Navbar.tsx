@@ -39,6 +39,7 @@ export default function Navbar() {
         <nav className={s.nav}>
           <Link href="/" className={s.logo} aria-label="Al Saad Telecom — Home">
             <Image src="/logo-ast.svg" alt="AST — Al Saad Telecom" width={683} height={270} priority className={s.logoImg} />
+            <span className={s.logoCaption}>AL SAAD TELECOM</span>
           </Link>
 
           <div className={s.links}>

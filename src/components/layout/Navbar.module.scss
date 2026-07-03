@@ -32,6 +32,32 @@
   position: relative;
   z-index: 10;
   flex-shrink: 0;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-decoration: none;
+}
+
+.logoCaption {
+  font-family: $font-mono;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.8);
+  white-space: nowrap;
+  transition: opacity 400ms $ease-out-expo;
+
+  .scrolled & {
+    opacity: 0.85;
+    font-size: 8px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 8px;
+    letter-spacing: 0.24em;
+  }
 }
 
 .logoImg {

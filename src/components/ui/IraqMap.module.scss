@@ -24,9 +24,27 @@
   animation: drawIn 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+.hotspot {
+  cursor: pointer;
+  outline: none;
+  transition: filter 250ms ease-out;
+
+  &:hover .marker,
+  &:focus-visible .marker {
+    filter: brightness(1.3);
+  }
+
+  &:hover text,
+  &:focus-visible text {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
 .marker {
   animation: pulse 2.8s ease-out infinite;
   transform-origin: 235.5px 195.1px;
+  transition: filter 250ms ease-out;
 }
 
 @keyframes drawIn {

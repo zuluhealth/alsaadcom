@@ -44,13 +44,27 @@
 }
 
 .logoLink {
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
   margin-bottom: 24px;
+  text-decoration: none;
 }
 
 .logoImg {
   height: 72px;
   width: auto;
+}
+
+.logoCaption {
+  font-family: $font-mono;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.85);
+  white-space: nowrap;
 }
 
 .tagline {

@@ -1,7 +1,12 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import type { KeyboardEvent } from "react";
 import s from "./IraqMap.module.scss";
 
 interface IraqMapProps {
   className?: string;
+  contactHref?: string;
 }
 
 /*
@@ -50,7 +55,21 @@ const IRAQ_PATH = [
 
 const BAGHDAD = { x: 235.5, y: 195.1 };
 
-export default function IraqMap({ className }: IraqMapProps) {
+export default function IraqMap({
+  className,
+  contactHref = "/contact",
+}: IraqMapProps) {
+  const router = useRouter();
+
+  const goToContact = () => router.push(contactHref);
+
+  const onKey = (e: KeyboardEvent<SVGGElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      goToContact();
+    }
+  };
+
   return (
     <div
       className={`${s.wrapper} ${className ?? ""}`}
@@ -87,29 +106,47 @@ export default function IraqMap({ className }: IraqMapProps) {
           className={s.outline}
         />
 
-        <g className={s.marker} filter="url(#iraq-glow)">
-          <circle cx={BAGHDAD.x} cy={BAGHDAD.y} r="6" fill="#ffffff" />
+        <g
+          className={s.hotspot}
+          role="link"
+          tabIndex={0}
+          aria-label="Contact us"
+          onClick={goToContact}
+          onKeyDown={onKey}
+        >
+          <g className={s.marker} filter="url(#iraq-glow)">
+            <circle cx={BAGHDAD.x} cy={BAGHDAD.y} r="6" fill="#ffffff" />
+            <circle
+              cx={BAGHDAD.x}
+              cy={BAGHDAD.y}
+              r="14"
+              fill="none"
+              stroke="rgba(255,255,255,0.55)"
+              strokeWidth="1.5"
+            />
+          </g>
+
+          <text
+            x={BAGHDAD.x + 20}
+            y={BAGHDAD.y - 20}
+            fontFamily="'JetBrains Mono', monospace"
+            fontSize="18"
+            fontWeight="600"
+            letterSpacing="2.4"
+            fill="#ffffff"
+          >
+            BAGHDAD
+          </text>
+
+          {/* Invisible larger hit area for easier clicking. */}
           <circle
             cx={BAGHDAD.x}
             cy={BAGHDAD.y}
-            r="14"
-            fill="none"
-            stroke="rgba(255,255,255,0.55)"
-            strokeWidth="1.5"
+            r="32"
+            fill="transparent"
+            pointerEvents="all"
           />
         </g>
-
-        <text
-          x={BAGHDAD.x + 20}
-          y={BAGHDAD.y - 20}
-          fontFamily="'JetBrains Mono', monospace"
-          fontSize="18"
-          fontWeight="600"
-          letterSpacing="2.4"
-          fill="#ffffff"
-        >
-          BAGHDAD
-        </text>
       </svg>
     </div>
   );

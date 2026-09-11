@@ -1,0 +1,233 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: start;
+
+  @include lg {
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    gap: 28px;
+  }
+}
+
+// ----- Context column -------------------------------------------------------
+.asideWrap {
+  min-width: 0;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-lg;
+  background: rgba($white, 0.015);
+}
+
+.asideNumber {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.6);
+}
+
+.asideTitle {
+  font-family: $font-heading;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: $white;
+  line-height: 1.2;
+}
+
+.asideParagraph {
+  font-family: $font-body;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: rgba($grey-400, 0.88);
+}
+
+.asideList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+  list-style: none;
+}
+
+.asideListItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: $font-body;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba($grey-400, 0.85);
+}
+
+.asideMarker {
+  color: rgba($grey-400, 0.6);
+  line-height: 1.55;
+  flex-shrink: 0;
+}
+
+// ----- Form -----------------------------------------------------------------
+.formWrap {
+  min-width: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 28px;
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-lg;
+  background: rgba($white, 0.015);
+
+  @include md {
+    padding: 32px;
+  }
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  @include sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fieldLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.75);
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  font-family: $font-body;
+  font-size: 13.5px;
+  letter-spacing: 0.01em;
+  color: $white;
+  background: rgba($white, 0.02);
+  border: 1px solid rgba($white, 0.08);
+  border-radius: $radius-md;
+  padding: 12px 14px;
+  transition: border-color 300ms $ease-out-expo, background 300ms $ease-out-expo;
+
+  &::placeholder {
+    color: rgba($grey-400, 0.4);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: rgba($white, 0.35);
+    background: rgba($white, 0.04);
+  }
+}
+
+.input,
+.select {
+  min-height: 46px;
+}
+
+.select {
+  appearance: none;
+  cursor: pointer;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.error {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ff6b6b;
+  line-height: 1.6;
+}
+
+.submitButton {
+  align-self: flex-start;
+  font-family: $font-mono;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $navy-950;
+  background: $white;
+  border: 1px solid $white;
+  border-radius: $radius-md;
+  padding: 13px 24px;
+  min-height: 46px;
+  cursor: pointer;
+  transition: background 300ms $ease-out-expo, opacity 300ms $ease-out-expo;
+
+  &:hover {
+    background: $grey-100;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+
+    &:hover {
+      background: $white;
+    }
+  }
+}
+
+// ----- Success state --------------------------------------------------------
+.logged {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 40px 32px;
+  border: 1px solid rgba($white, 0.1);
+  border-left: 2px solid rgba($white, 0.4);
+  border-radius: $radius-lg;
+  background: rgba($white, 0.02);
+}
+
+.loggedMark {
+  font-family: $font-mono;
+  font-size: 17px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $white;
+}
+
+.loggedText {
+  font-family: $font-body;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba($grey-400, 0.9);
+  max-width: 520px;
+}

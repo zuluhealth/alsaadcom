@@ -1,0 +1,111 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 26px;
+  background: rgba($white, 0.015);
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-lg;
+  transition: border-color 300ms $ease-out-expo, background 300ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.12);
+    background: rgba($white, 0.025);
+  }
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tags {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.format {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: $radius-sm;
+  border: 1px solid rgba($white, 0.1);
+  color: rgba($white, 0.95);
+  background: rgba($white, 0.04);
+}
+
+.duration {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgba($grey-400, 0.8);
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: $white;
+}
+
+.audience {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgba($grey-400, 0.85);
+}
+
+.description {
+  font-family: $font-body;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba($grey-400, 0.85);
+}
+
+.outcomes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+.outcomesLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.65);
+}
+
+.outcomesList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  list-style: none;
+}
+
+.outcomeItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: $font-body;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba($white, 0.92);
+
+  svg {
+    margin-top: 4px;
+    flex-shrink: 0;
+    color: rgba($white, 0.8);
+  }
+}

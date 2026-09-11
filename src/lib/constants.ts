@@ -2,7 +2,9 @@ export const SITE_NAME = "Al Saad Telecom";
 export const SITE_TAGLINE = "A Safer Tomorrow";
 export const SITE_DESCRIPTION =
   "As a systems integrator with deep expertise in secured communications, security infrastructure, and telecommunications, AST takes a comprehensive approach — engineering solutions, maintaining them, and delivering sustained support throughout their lifecycle.";
-export const SITE_URL = "https://alsaadtelecom.com";
+export const SITE_META_DESCRIPTION =
+  "Al Saad Telecom engineers and supports secured communications, telecom, and security infrastructure for mission-critical operations across Iraq.";
+export const SITE_URL = "https://alsaadcom.com";
 
 export const NAV_LINKS = [
   { label: "About", href: "/about" },

@@ -18,8 +18,11 @@ export default function Navbar() {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    const initialFrame = requestAnimationFrame(handleScroll);
+    return () => {
+      cancelAnimationFrame(initialFrame);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [handleScroll]);
 
   useEffect(() => {
@@ -51,6 +54,10 @@ export default function Navbar() {
           </div>
 
           <div className={s.actions}>
+            {/* Load a new document so the private-route CSP takes effect. */}
+            <a href="/partner-login" className={s.partnerLogin}>
+              Partner Login
+            </a>
             <Link href="/contact" className={s.cta}>
               Get in Touch
             </Link>

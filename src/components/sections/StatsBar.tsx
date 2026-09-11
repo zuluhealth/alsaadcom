@@ -13,7 +13,7 @@ interface Stat {
 
 const stats: Stat[] = [
   { label: "Securing Iraqi borders", value: 3750, suffix: "+ km" },
-  { label: "Team members", value: 200, suffix: "+" },
+  { label: "Years of excellence", value: 22, suffix: "" },
   { label: "Hours of operation", value: 700000, suffix: "+" },
   { label: "Hours of training performed", value: 40000, suffix: "+" },
   { label: "People trained", value: 8000, suffix: "+" },

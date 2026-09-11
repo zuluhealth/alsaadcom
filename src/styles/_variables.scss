@@ -22,9 +22,9 @@ $blue-600: #cbd5e1;
 $cyan-400: #e2e8f0;
 
 // Typography
-$font-heading: "Space Grotesk", sans-serif;
-$font-body: "Poppins", sans-serif;
-$font-mono: "JetBrains Mono", monospace;
+$font-heading: var(--font-heading), sans-serif;
+$font-body: var(--font-body), sans-serif;
+$font-mono: var(--font-mono), monospace;
 
 // Easing
 $ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);

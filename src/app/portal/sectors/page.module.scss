@@ -1,0 +1,99 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 16px;
+
+  @include sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include xl {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-lg;
+  background: rgba($white, 0.015);
+  transition: border-color 300ms $ease-out-expo, background 300ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.12);
+    background: rgba($white, 0.03);
+  }
+}
+
+.cardTitle {
+  font-family: $font-heading;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: $white;
+}
+
+.cardDesc {
+  font-family: $font-body;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba($grey-400, 0.9);
+  flex: 1;
+}
+
+.cardFooter {
+  padding-top: 6px;
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: $white;
+  text-decoration: none;
+  border-bottom: 1px solid rgba($white, 0.25);
+  padding-bottom: 3px;
+  transition: border-color 200ms $ease-out-expo, gap 200ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.6);
+    gap: 9px;
+  }
+}
+
+.chipLink {
+  display: inline-flex;
+  align-items: center;
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba($grey-300, 0.85);
+  text-decoration: none;
+  padding: 6px 11px;
+  border: 1px solid rgba($white, 0.12);
+  border-radius: $radius-sm;
+  background: rgba($white, 0.02);
+  transition: border-color 200ms $ease-out-expo, color 200ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.28);
+    color: $white;
+  }
+}

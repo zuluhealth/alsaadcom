@@ -1,0 +1,186 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+// ----- Lead tile ------------------------------------------------------------
+.leadTile {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 28px;
+  border: 1px solid rgba($white, 0.1);
+  border-left: 2px solid rgba($white, 0.3);
+  border-radius: $radius-lg;
+  background: rgba($white, 0.02);
+
+  @include md {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 36px;
+  }
+}
+
+.leadBadge {
+  flex-shrink: 0;
+  color: $white;
+}
+
+.leadCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 620px;
+}
+
+.leadTag {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.75);
+}
+
+.leadTitle {
+  font-family: $font-heading;
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: $white;
+}
+
+.leadText {
+  font-family: $font-body;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba($grey-400, 0.9);
+}
+
+// ----- Sections -------------------------------------------------------------
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.sectionLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.7);
+}
+
+// ----- Governance posture grid ----------------------------------------------
+.postureGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 16px;
+
+  @include md {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.postureCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 24px;
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-md;
+  background: rgba($white, 0.015);
+}
+
+.postureBadge {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba($grey-300, 0.85);
+  align-self: flex-start;
+  padding: 4px 9px;
+  border: 1px solid rgba($white, 0.12);
+  border-radius: $radius-sm;
+}
+
+.postureTitle {
+  font-family: $font-heading;
+  font-size: 15.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: $white;
+}
+
+.postureText {
+  font-family: $font-body;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba($grey-400, 0.88);
+}
+
+// ----- Standards list -------------------------------------------------------
+.standardsList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.standardRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  background: rgba($white, 0.012);
+
+  & + & {
+    border-top: 1px solid rgba($white, 0.05);
+  }
+
+  @include md {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 24px;
+  }
+}
+
+.standardName {
+  font-family: $font-mono;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $white;
+  flex-shrink: 0;
+
+  @include md {
+    width: 200px;
+  }
+}
+
+.standardDetail {
+  font-family: $font-body;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba($grey-400, 0.85);
+}
+
+// ----- Process discipline ---------------------------------------------------
+.disciplineText {
+  font-family: $font-body;
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba($grey-400, 0.9);
+  max-width: 780px;
+  padding: 22px 24px;
+  border: 1px solid rgba($white, 0.06);
+  border-left: 2px solid rgba($white, 0.22);
+  border-radius: $radius-md;
+  background: rgba($white, 0.015);
+}

@@ -109,6 +109,13 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               ))}
 
               <motion.div variants={itemVariants} className={s.ctaWrapper}>
+                <a
+                  href="/partner-login"
+                  onClick={onClose}
+                  className={s.partnerLoginBtn}
+                >
+                  Partner Login
+                </a>
                 <Link
                   href="/contact"
                   onClick={onClose}

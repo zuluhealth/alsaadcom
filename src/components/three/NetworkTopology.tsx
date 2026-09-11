@@ -6,7 +6,6 @@ import { Html } from "@react-three/drei";
 import {
   BufferGeometry,
   Float32BufferAttribute,
-  LineBasicMaterial,
   Color,
   Vector3,
   AdditiveBlending,
@@ -125,7 +124,6 @@ function ConnectionLines() {
           a[2] + (b[2] - a[2]) * t2 + Math.sin(t2 * Math.PI) * 0.15
         );
 
-        const opacity = 0.3 + Math.sin(t1 * Math.PI) * 0.3;
         colors.push(white.r, white.g, white.b, white.r, white.g, white.b);
       }
     });

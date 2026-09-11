@@ -1,0 +1,405 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+$sidebar-width: 280px;
+$topbar-height: 72px;
+$classification-height: 28px;
+
+.shell {
+  min-height: 100vh;
+  background: $navy-950;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+}
+
+.classification {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  width: 100%;
+  height: $classification-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $navy-900;
+  border-bottom: 1px solid rgba($white, 0.05);
+  padding: 0 24px;
+  font-family: $font-mono;
+  font-size: 9px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.65);
+}
+
+.topbar {
+  position: sticky;
+  top: $classification-height;
+  z-index: 55;
+  height: $topbar-height;
+  background: rgba($navy-950, 0.92);
+  border-bottom: 1px solid rgba($white, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.topbarInner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px;
+
+  @include md {
+    padding: 0 32px;
+  }
+}
+
+.menuToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-sm;
+  border: 1px solid rgba($white, 0.06);
+  background: transparent;
+  color: $white;
+  cursor: pointer;
+  transition: all 200ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.18);
+    background: rgba($white, 0.04);
+  }
+
+  @include lg {
+    display: none;
+  }
+}
+
+.brand {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.brandLogo {
+  height: 36px;
+  width: auto;
+
+  @include md {
+    height: 42px;
+  }
+}
+
+.brandCaption {
+  font-family: $font-mono;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.7);
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.identity {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.identityMeta {
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.2;
+
+  @include sm {
+    display: flex;
+  }
+}
+
+.identityLabel {
+  font-family: $font-mono;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.55);
+}
+
+.identityEmail {
+  font-family: $font-mono;
+  font-size: 12px;
+  color: rgba($white, 0.9);
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.signOutForm {
+  display: flex;
+}
+
+.signOutBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: $radius-sm;
+  border: 1px solid rgba($white, 0.08);
+  background: transparent;
+  color: rgba($grey-400, 0.85);
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 200ms $ease-out-expo;
+
+  &:hover {
+    color: $white;
+    border-color: rgba($white, 0.2);
+    background: rgba($white, 0.04);
+  }
+
+  span {
+    display: none;
+
+    @include md {
+      display: inline;
+    }
+  }
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  position: relative;
+  align-items: stretch;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 70;
+  width: 320px;
+  max-width: 86vw;
+  background: $navy-900;
+  border-right: 1px solid rgba($white, 0.06);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 350ms $ease-out-expo;
+
+  @include lg {
+    position: sticky;
+    top: $classification-height + $topbar-height;
+    height: calc(100vh - #{$classification-height} - #{$topbar-height});
+    transform: none;
+    width: $sidebar-width;
+    flex-shrink: 0;
+    background: transparent;
+    z-index: 1;
+  }
+}
+
+.sidebarOpen {
+  transform: translateX(0);
+  box-shadow: 24px 0 64px rgba(0, 0, 0, 0.55);
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid rgba($white, 0.04);
+
+  @include lg {
+    padding-top: 32px;
+    border-bottom: none;
+  }
+}
+
+.sidebarTag {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.55);
+}
+
+.drawerClose {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: $radius-sm;
+  border: 1px solid rgba($white, 0.08);
+  background: transparent;
+  color: $white;
+  cursor: pointer;
+
+  @include lg {
+    display: none;
+  }
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 16px 12px 24px;
+  overflow-y: auto;
+
+  @include lg {
+    padding: 16px 16px 24px 24px;
+  }
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.groupLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.55);
+
+  svg {
+    color: rgba($grey-400, 0.7);
+  }
+}
+
+.groupItems {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.navLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px 10px 16px;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba($grey-400, 0.85);
+  border-radius: $radius-sm;
+  transition: all 200ms $ease-out-expo;
+
+  &:hover {
+    color: $white;
+    background: rgba($white, 0.025);
+  }
+}
+
+.navLinkBar {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  width: 2px;
+  height: 0;
+  transform: translateY(-50%);
+  background: $white;
+  transition: height 200ms $ease-out-expo;
+}
+
+.navLinkActive {
+  color: $white;
+  background: rgba($white, 0.04);
+
+  .navLinkBar {
+    height: 18px;
+  }
+}
+
+.navIndex {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba($grey-400, 0.55);
+  flex-shrink: 0;
+}
+
+.navBadge {
+  margin-left: auto;
+  font-family: $font-mono;
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.7);
+  border: 1px solid rgba($white, 0.14);
+  border-radius: $radius-sm;
+  padding: 2px 6px;
+  flex-shrink: 0;
+}
+
+.sidebarFooter {
+  padding: 16px 24px 20px;
+  border-top: 1px solid rgba($white, 0.04);
+}
+
+.sidebarFootnote {
+  font-family: $font-mono;
+  font-size: 10px;
+  line-height: 1.55;
+  letter-spacing: 0.06em;
+  color: rgba($grey-400, 0.4);
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 65;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  cursor: pointer;
+  border: none;
+
+  @include lg {
+    display: none;
+  }
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.contentInner {
+  padding: 32px 20px 96px;
+
+  @include md {
+    padding: 40px 32px 96px;
+  }
+
+  @include lg {
+    padding: 48px 48px 120px;
+    max-width: 1180px;
+  }
+}

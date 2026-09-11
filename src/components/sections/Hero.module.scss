@@ -7,6 +7,12 @@
   min-height: 800px;
   width: 100%;
   overflow: hidden;
+
+  @media (max-width: 767px) {
+    height: auto;
+    min-height: 100svh;
+    overflow: clip;
+  }
 }
 
 .scene {
@@ -43,9 +49,19 @@
   display: flex;
   height: 100%;
   align-items: flex-end;
+  padding-top: 124px;
   padding-bottom: 112px;
 
+  @media (max-width: 767px) {
+    min-height: 100svh;
+    height: auto;
+    align-items: flex-start;
+    padding-top: 136px;
+    padding-bottom: 72px;
+  }
+
   @include md {
+    padding-top: 140px;
     padding-bottom: 144px;
   }
 
@@ -101,7 +117,7 @@
 
 .heading {
   @include heading-display;
-  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-size: clamp(2.25rem, 5vw, 4.75rem);
 }
 
 .hiddenMobile {

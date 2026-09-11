@@ -1,0 +1,103 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.proofGrid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 16px;
+
+  @include md {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.proof {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  padding: 24px 26px;
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-lg;
+  background: rgba($white, 0.02);
+  transition: border-color 300ms $ease-out-expo, background 300ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.12);
+    background: rgba($white, 0.035);
+  }
+}
+
+.proofHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.proofIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba($white, 0.1);
+  border-radius: $radius-sm;
+  color: rgba($white, 0.85);
+}
+
+.proofTag {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.7);
+}
+
+.proofTitle {
+  font-family: $font-heading;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: $white;
+}
+
+.proofBody {
+  font-family: $font-body;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba($grey-400, 0.9);
+}
+
+.closing {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px 28px;
+  border: 1px solid rgba($white, 0.06);
+  border-left: 2px solid rgba($white, 0.25);
+  border-radius: $radius-md;
+  background: rgba($white, 0.015);
+  max-width: 860px;
+}
+
+.closingLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.7);
+}
+
+.closingText {
+  font-family: $font-body;
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba($white, 0.88);
+}

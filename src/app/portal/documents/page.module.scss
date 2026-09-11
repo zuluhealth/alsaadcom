@@ -1,0 +1,161 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba($white, 0.02);
+  border: 1px solid rgba($white, 0.06);
+  border-left: 2px solid rgba($white, 0.35);
+  border-radius: $radius-sm;
+}
+
+.noticeMark {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: rgba($white, 0.85);
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+
+.noticeText {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.85);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.searchWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 14px;
+  color: rgba($grey-400, 0.7);
+  pointer-events: none;
+}
+
+.search {
+  width: 100%;
+  height: 44px;
+  padding: 0 16px 0 40px;
+  border-radius: $radius-md;
+  border: 1px solid rgba($white, 0.08);
+  background: rgba($white, 0.02);
+  font-family: $font-body;
+  font-size: 13.5px;
+  color: $white;
+  outline: none;
+  transition: border-color 200ms $ease-out-expo, background 200ms $ease-out-expo;
+
+  &::placeholder {
+    color: rgba($grey-400, 0.5);
+  }
+
+  &:focus {
+    border-color: rgba($white, 0.25);
+    background: rgba($white, 0.035);
+  }
+}
+
+.filterStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  padding: 14px 16px;
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-md;
+  background: rgba($white, 0.012);
+}
+
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: $radius-sm;
+  font-family: $font-mono;
+  font-size: 10.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.8);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 180ms $ease-out-expo;
+
+  &:hover {
+    color: $white;
+    background: rgba($white, 0.04);
+  }
+}
+
+.filterActive {
+  color: $white;
+  background: rgba($white, 0.06);
+  border-color: rgba($white, 0.15);
+
+  &:hover {
+    background: rgba($white, 0.08);
+  }
+}
+
+.filterCount {
+  font-size: 9.5px;
+  opacity: 0.65;
+  letter-spacing: 0.15em;
+}
+
+.filterDivider {
+  font-family: $font-mono;
+  font-size: 10px;
+  color: rgba($grey-400, 0.35);
+  align-self: center;
+  user-select: none;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.6);
+  padding: 40px;
+  text-align: center;
+  border: 1px dashed rgba($white, 0.08);
+  border-radius: $radius-md;
+}
+
+.summary {
+  font-family: $font-mono;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.6);
+}

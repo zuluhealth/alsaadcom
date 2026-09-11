@@ -1,0 +1,178 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.blockLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.7);
+}
+
+.wallBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.statWall {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1px;
+  list-style: none;
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-lg;
+  overflow: hidden;
+  background: rgba($white, 0.06);
+
+  @include sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include lg {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.statCell {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 26px 24px;
+  background: $navy-900;
+  transition: background 300ms $ease-out-expo;
+
+  &:hover {
+    background: rgba($white, 0.03);
+  }
+}
+
+.statValue {
+  font-family: $font-heading;
+  font-size: clamp(1.75rem, 3.4vw, 2.375rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: $white;
+}
+
+.statLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: rgba($grey-400, 0.7);
+}
+
+.depthBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.depthLede {
+  font-family: $font-body;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: rgba($grey-400, 0.9);
+  max-width: 720px;
+}
+
+.depthList {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 4px;
+
+  @include md {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.depthItem {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  padding: 22px 24px;
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-lg;
+  background: rgba($white, 0.02);
+  transition: border-color 300ms $ease-out-expo, background 300ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.12);
+    background: rgba($white, 0.035);
+  }
+}
+
+.depthItemHead {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.depthIndex {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba($grey-400, 0.5);
+  padding-top: 2px;
+}
+
+.depthItemMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.depthItemTitle {
+  font-family: $font-heading;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: $white;
+}
+
+.depthItemAudience {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.6);
+}
+
+.outcomeList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding-left: 30px;
+}
+
+.outcome {
+  position: relative;
+  font-family: $font-body;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba($grey-400, 0.9);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border: 1px solid rgba($white, 0.4);
+    border-radius: 1px;
+  }
+}

@@ -1,0 +1,177 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.sessionStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  padding: 12px 0;
+  border-top: 1px solid rgba($white, 0.05);
+  border-bottom: 1px solid rgba($white, 0.05);
+}
+
+.sessionItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sessionLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.55);
+}
+
+.sessionValue {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba($white, 0.85);
+  word-break: break-all;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 860px;
+}
+
+.heroEyebrow {
+  @include eyebrow;
+}
+
+.heroWordmark {
+  display: flex;
+}
+
+.heroLogo {
+  height: 48px;
+  width: auto;
+
+  @include md {
+    height: 60px;
+  }
+}
+
+.heroPositioning {
+  font-family: $font-heading;
+  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: $white;
+  max-width: 780px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 16px;
+
+  @include sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include lg {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  background: rgba($white, 0.018);
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-lg;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 300ms $ease-out-expo, background 300ms $ease-out-expo,
+    transform 300ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.18);
+    background: rgba($white, 0.035);
+    transform: translateY(-2px);
+
+    .cardCta {
+      color: $white;
+    }
+  }
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cardIndex {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: rgba($grey-400, 0.6);
+}
+
+.cardEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.55);
+}
+
+.cardEyebrowMark {
+  color: rgba($grey-400, 0.4);
+}
+
+.cardTitle {
+  font-family: $font-heading;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: $white;
+}
+
+.cardSummary {
+  font-family: $font-body;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba($grey-400, 0.85);
+  flex: 1;
+}
+
+.cardCta {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.6);
+  padding-top: 8px;
+  border-top: 1px solid rgba($white, 0.04);
+  transition: color 300ms $ease-out-expo;
+}
+
+.cardChip {
+  font-family: $font-mono;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.7);
+  padding-top: 8px;
+  border-top: 1px solid rgba($white, 0.04);
+}

@@ -1,0 +1,115 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.row {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: rgba($white, 0.012);
+  border: 1px solid rgba($white, 0.05);
+  border-radius: $radius-md;
+  transition: border-color 200ms $ease-out-expo, background 200ms $ease-out-expo;
+
+  & + & {
+    margin-top: 8px;
+  }
+
+  &:hover {
+    border-color: rgba($white, 0.12);
+    background: rgba($white, 0.025);
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-sm;
+  background: rgba($white, 0.04);
+  border: 1px solid rgba($white, 0.06);
+  color: rgba($white, 0.9);
+}
+
+.main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.titleRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  @include sm {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+  }
+}
+
+.category {
+  font-family: $font-mono;
+  font-size: 9.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.7);
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: $white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: $font-mono;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: rgba($grey-400, 0.65);
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: $radius-sm;
+  border: 1px solid rgba($white, 0.08);
+  background: transparent;
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.85);
+  transition: all 200ms $ease-out-expo;
+
+  &:hover {
+    color: $white;
+    border-color: rgba($white, 0.2);
+    background: rgba($white, 0.04);
+  }
+
+  span {
+    display: none;
+
+    @include sm {
+      display: inline;
+    }
+  }
+}

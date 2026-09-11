@@ -284,8 +284,19 @@ function ContactFormSection() {
                   </div>
                   <div>
                     <p className={s.contactLabel}>Phone</p>
-                    <a href="tel:+9647700000000" className={s.contactLink}>
-                      +964 770 000 0000
+                    <a
+                      href="tel:+9647718009955"
+                      className={s.contactLink}
+                      style={{ display: "block" }}
+                    >
+                      +964 771 800 9955
+                    </a>
+                    <a
+                      href="tel:+9647818009955"
+                      className={s.contactLink}
+                      style={{ display: "block" }}
+                    >
+                      +964 781 800 9955
                     </a>
                   </div>
                 </div>

@@ -1,0 +1,113 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.locked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 64px 24px;
+  border: 1px solid rgba($white, 0.08);
+  border-radius: $radius-lg;
+  background: rgba($white, 0.015);
+  text-align: center;
+
+  @include md {
+    padding: 80px 40px;
+  }
+}
+
+.lockGlyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba($white, 0.12);
+  border-radius: $radius-md;
+  background: rgba($white, 0.02);
+  color: $white;
+}
+
+.classification {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.8);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 640px;
+}
+
+.paragraph {
+  font-family: $font-body;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: rgba($grey-400, 0.9);
+}
+
+.factRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+  max-width: 720px;
+  margin-top: 4px;
+
+  @include md {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 18px;
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-md;
+  background: rgba($white, 0.015);
+  text-align: left;
+}
+
+.factLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.6);
+}
+
+.factValue {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $white;
+  line-height: 1.5;
+}
+
+.closing {
+  margin-top: 8px;
+  padding-top: 24px;
+  border-top: 1px solid rgba($white, 0.06);
+  width: 100%;
+  max-width: 640px;
+  font-family: $font-mono;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $white;
+  line-height: 1.7;
+}

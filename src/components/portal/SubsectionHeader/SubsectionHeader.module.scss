@@ -1,0 +1,44 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 24px;
+  scroll-margin-top: 120px;
+}
+
+.tagRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tag {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.75);
+}
+
+.abstract {
+  font-family: $font-mono;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px dashed rgba($white, 0.15);
+  border-radius: $radius-sm;
+  color: rgba($grey-400, 0.85);
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: clamp(1.375rem, 2vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: $white;
+}

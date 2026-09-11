@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import type { KeyboardEvent } from "react";
+import { offices } from "@/data/offices";
 import s from "./IraqMap.module.scss";
 
 interface IraqMapProps {
@@ -17,7 +18,9 @@ interface IraqMapProps {
  *
  * Baghdad's real geographic coordinates (33.3152°N, 44.3661°E) are mapped
  * into the same viewBox using an equirectangular projection over Iraq's
- * lat/lng bounding box, giving (235.5, 195.1).
+ * lat/lng bounding box, giving (235.5, 195.1). Every other office is placed
+ * by its real geographic offset from that anchor, using the same per-degree
+ * scale, so all six markers sit correctly on the outline.
  */
 const IRAQ_PATH = [
   "M 183.85,26.11",
@@ -53,13 +56,44 @@ const IRAQ_PATH = [
   "Z",
 ].join(" ");
 
-const BAGHDAD = { x: 235.5, y: 195.1 };
+// Baghdad is the projection anchor, pinned to its tuned viewBox position so the
+// HQ marker and its CSS pulse transform-origin stay pixel-aligned. Per-degree
+// scale is derived from Iraq's bounding box fitted to the polygon:
+//   px/lng = (397.81 − 22.19) / (48.57 − 38.79) ≈ 38.407
+//   px/lat = (380 − 20) / (37.38 − 29.06) ≈ 43.269
+const ANCHOR = { lat: 33.3152, lng: 44.3661, x: 235.5, y: 195.1 };
+const PX_PER_LNG = 38.407;
+const PX_PER_LAT = 43.269;
+
+function project(lat: number, lng: number) {
+  return {
+    x: ANCHOR.x + (lng - ANCHOR.lng) * PX_PER_LNG,
+    y: ANCHOR.y - (lat - ANCHOR.lat) * PX_PER_LAT,
+  };
+}
+
+// Per-city label placement (offset from the marker + text anchor) tuned to keep
+// labels inside the viewBox and clear of neighbouring markers.
+const LABELS: Record<
+  string,
+  { dx: number; dy: number; anchor: "start" | "end" }
+> = {
+  Erbil: { dx: -10, dy: 3.5, anchor: "end" },
+  Sulaymaniyah: { dx: 10, dy: 3.5, anchor: "start" },
+  Kirkuk: { dx: -10, dy: 3.5, anchor: "end" },
+  Najaf: { dx: -10, dy: 4, anchor: "end" },
+  Basra: { dx: -10, dy: 4, anchor: "end" },
+};
 
 export default function IraqMap({
   className,
   contactHref = "/contact",
 }: IraqMapProps) {
   const router = useRouter();
+
+  const hq = offices.find((o) => o.isHQ) ?? offices[0];
+  const hqPos = project(hq.coordinates.lat, hq.coordinates.lng);
+  const cities = offices.filter((o) => !o.isHQ);
 
   const goToContact = () => router.push(contactHref);
 
@@ -74,7 +108,7 @@ export default function IraqMap({
     <div
       className={`${s.wrapper} ${className ?? ""}`}
       role="img"
-      aria-label="Outline of Iraq with Baghdad marked"
+      aria-label="Outline of Iraq with Al Saad Telecom's six offices marked"
     >
       <svg
         className={s.svg}
@@ -106,19 +140,55 @@ export default function IraqMap({
           className={s.outline}
         />
 
+        {/* Regional offices */}
+        {cities.map((office) => {
+          const p = project(office.coordinates.lat, office.coordinates.lng);
+          const lbl = LABELS[office.city] ?? {
+            dx: 10,
+            dy: 3.5,
+            anchor: "start" as const,
+          };
+          return (
+            <g key={office.city} className={s.cityMarker}>
+              <circle
+                cx={p.x}
+                cy={p.y}
+                r="7"
+                fill="none"
+                stroke="rgba(255,255,255,0.25)"
+                strokeWidth="1"
+              />
+              <circle cx={p.x} cy={p.y} r="3.5" fill="rgba(255,255,255,0.9)" />
+              <text
+                x={p.x + lbl.dx}
+                y={p.y + lbl.dy}
+                textAnchor={lbl.anchor}
+                fontFamily="var(--font-mono), monospace"
+                fontSize="11"
+                fontWeight="500"
+                letterSpacing="1.4"
+                fill="rgba(255,255,255,0.82)"
+              >
+                {office.city.toUpperCase()}
+              </text>
+            </g>
+          );
+        })}
+
+        {/* Headquarters — visually distinct + links to contact */}
         <g
           className={s.hotspot}
           role="link"
           tabIndex={0}
-          aria-label="Contact us"
+          aria-label={`Contact us — ${hq.city} headquarters`}
           onClick={goToContact}
           onKeyDown={onKey}
         >
           <g className={s.marker} filter="url(#iraq-glow)">
-            <circle cx={BAGHDAD.x} cy={BAGHDAD.y} r="6" fill="#ffffff" />
+            <circle cx={hqPos.x} cy={hqPos.y} r="6" fill="#ffffff" />
             <circle
-              cx={BAGHDAD.x}
-              cy={BAGHDAD.y}
+              cx={hqPos.x}
+              cy={hqPos.y}
               r="14"
               fill="none"
               stroke="rgba(255,255,255,0.55)"
@@ -127,21 +197,32 @@ export default function IraqMap({
           </g>
 
           <text
-            x={BAGHDAD.x + 20}
-            y={BAGHDAD.y - 20}
-            fontFamily="'JetBrains Mono', monospace"
-            fontSize="18"
+            x={hqPos.x + 16}
+            y={hqPos.y - 14}
+            fontFamily="var(--font-mono), monospace"
+            fontSize="16"
             fontWeight="600"
-            letterSpacing="2.4"
+            letterSpacing="2.2"
             fill="#ffffff"
           >
-            BAGHDAD
+            {hq.city.toUpperCase()}
+          </text>
+          <text
+            x={hqPos.x + 16}
+            y={hqPos.y - 1}
+            fontFamily="var(--font-mono), monospace"
+            fontSize="8.5"
+            fontWeight="500"
+            letterSpacing="1.6"
+            fill="rgba(255,255,255,0.6)"
+          >
+            HEADQUARTERS
           </text>
 
           {/* Invisible larger hit area for easier clicking. */}
           <circle
-            cx={BAGHDAD.x}
-            cy={BAGHDAD.y}
+            cx={hqPos.x}
+            cy={hqPos.y}
             r="32"
             fill="transparent"
             pointerEvents="all"

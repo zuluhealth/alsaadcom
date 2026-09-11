@@ -1,0 +1,176 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px;
+  background: rgba($white, 0.015);
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-lg;
+  transition: border-color 300ms $ease-out-expo, background 300ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.12);
+    background: rgba($white, 0.025);
+  }
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.vendor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-sm;
+  background: rgba($white, 0.05);
+  border: 1px solid rgba($white, 0.08);
+  flex-shrink: 0;
+}
+
+.logoGlyph {
+  font-family: $font-mono;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba($white, 0.92);
+}
+
+.vendorLogo {
+  height: 26px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  object-position: left center;
+  flex-shrink: 0;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+
+.vendorMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.vendorLabel {
+  font-family: $font-mono;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.55);
+}
+
+.vendorName {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.75);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product {
+  font-family: $font-heading;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: $white;
+}
+
+.description {
+  font-family: $font-body;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba($grey-400, 0.85);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+}
+
+.tag {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba($grey-400, 0.85);
+  padding: 4px 8px;
+  border: 1px solid rgba($white, 0.08);
+  border-radius: $radius-sm;
+  background: rgba($white, 0.02);
+}
+
+.authorization {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 12px;
+  background: rgba($white, 0.06);
+  border: 1px solid rgba($white, 0.1);
+  border-radius: $radius-sm;
+  color: $white;
+}
+
+.authLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: rgba($white, 0.95);
+}
+
+.authScope {
+  font-family: $font-body;
+  font-size: 12.5px;
+  color: rgba($white, 0.85);
+  line-height: 1.4;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba($white, 0.04);
+  padding-top: 14px;
+}
+
+.datasheet {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.85);
+  transition: color 200ms $ease-out-expo;
+
+  &:hover {
+    color: $white;
+  }
+}

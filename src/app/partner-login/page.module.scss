@@ -1,0 +1,320 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: $navy-950;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+.classification {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba($white, 0.06);
+  padding: 10px 24px;
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.7);
+  text-align: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  @include md {
+    padding: 10px 48px;
+  }
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px 64px;
+
+  @include md {
+    padding: 64px 48px;
+  }
+}
+
+.content {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  /* No card chrome — pure typography over the animation. */
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: $white;
+  transition: opacity 200ms $ease-out-expo;
+  width: fit-content;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.eyebrow {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: $white;
+  margin-top: 4px;
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: $white;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.4);
+}
+
+.lede {
+  font-family: $font-body;
+  font-size: 15px;
+  line-height: 1.65;
+  color: $white;
+  max-width: 440px;
+}
+
+.footnote {
+  margin-top: 16px;
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: $white;
+}
+
+.contactButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  height: 48px;
+  padding: 0 22px;
+  border: 1px solid $white;
+  border-radius: $radius-md;
+  background: transparent;
+  color: $white;
+  font-family: $font-heading;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  overflow: hidden;
+  transition: border-color 300ms $ease-out-expo;
+
+  &:hover {
+    .contactButtonFill {
+      transform: scaleX(1);
+    }
+
+    .contactButtonContent {
+      color: $navy-950;
+    }
+  }
+}
+
+.contactButtonFill {
+  position: absolute;
+  inset: 0;
+  background: $white;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms $ease-out-expo;
+}
+
+.contactButtonContent {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 300ms $ease-out-expo;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  margin-top: 18px;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background: rgba($white, 0.25);
+}
+
+.dividerLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: $white;
+}
+
+/* ─── Access form ─── */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fieldLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba($white, 0.7);
+}
+
+.input {
+  height: 44px;
+  width: 100%;
+  border-radius: $radius-md;
+  border: 1px solid rgba($white, 0.14);
+  background: rgba($white, 0.03);
+  padding: 0 14px;
+  font-size: 14px;
+  color: $white;
+  outline: none;
+  transition: border-color 300ms $ease-out-expo,
+    background 300ms $ease-out-expo;
+  font-family: $font-body;
+
+  &::placeholder {
+    color: rgba($grey-400, 0.4);
+  }
+
+  &:focus {
+    border-color: rgba($white, 0.5);
+    background: rgba($white, 0.06);
+  }
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.checkbox {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: $white;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-family: $font-body;
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba($white, 0.72);
+}
+
+.error {
+  font-family: $font-mono;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: #ff6b6b;
+}
+
+.submitButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  margin-top: 4px;
+  padding: 0 24px;
+  border: 1px solid $white;
+  border-radius: $radius-md;
+  background: transparent;
+  color: $white;
+  font-family: $font-mono;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 300ms $ease-out-expo;
+
+  &:hover:not(:disabled) {
+    .submitButtonFill {
+      transform: scaleX(1);
+    }
+
+    .submitButtonContent {
+      color: $navy-950;
+    }
+  }
+
+  &:disabled {
+    cursor: progress;
+    opacity: 0.7;
+  }
+}
+
+.submitButtonFill {
+  position: absolute;
+  inset: 0;
+  background: $white;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms $ease-out-expo;
+}
+
+.submitButtonContent {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 300ms $ease-out-expo;
+}

@@ -115,14 +115,40 @@
   }
 }
 
+.partnerLogin {
+  display: none;
+  align-items: center;
+  height: 36px;
+  padding: 0 14px;
+  font-family: $font-mono;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $white;
+  border: 1px solid rgba($white, 0.35);
+  border-radius: $radius-sm;
+  background: transparent;
+  transition: all 300ms $ease-out-expo;
+
+  &:hover {
+    border-color: $white;
+    background: rgba($white, 0.08);
+  }
+
+  @include lg {
+    display: inline-flex;
+  }
+}
+
 .menuBtn {
   position: relative;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   color: $white;
   background: none;
   border: none;

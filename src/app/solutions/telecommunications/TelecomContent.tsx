@@ -27,6 +27,8 @@ export default function TelecomContent() {
             fill
             className={s.heroImage}
             priority
+            sizes="100vw"
+            quality={65}
           />
           <div className={s.heroBgOverlay} />
         </div>

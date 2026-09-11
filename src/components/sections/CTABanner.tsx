@@ -16,15 +16,23 @@ const DynamicScene = dynamic(() => import("@/components/three/DynamicScene"), {
 export default function CTABanner() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const shouldRenderScene = useInView(ref, {
+    once: true,
+    margin: "300px 0px",
+  });
 
   return (
     <section ref={ref} className={s.section}>
       {/* Blue fiber optic animation background */}
-      <DynamicScene
-        scene="blue-fiber"
-        className={s.scene}
-        fallbackClassName={s.scene}
-      />
+      {shouldRenderScene ? (
+        <DynamicScene
+          scene="blue-fiber"
+          className={s.scene}
+          fallbackClassName={s.scene}
+        />
+      ) : (
+        <div className={s.scene} />
+      )}
 
       {/* Gradient overlays to blend animation with section */}
       <div className={s.bgOverlay} />

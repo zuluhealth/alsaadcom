@@ -7,9 +7,9 @@ export const stats: CompanyStat[] = [
     suffix: "+ km",
   },
   {
-    label: "Team members",
-    value: 200,
-    suffix: "+",
+    label: "Years of excellence",
+    value: 22,
+    suffix: "",
   },
   {
     label: "Hours of operation",

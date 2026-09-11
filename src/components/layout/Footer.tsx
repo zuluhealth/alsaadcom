@@ -18,9 +18,11 @@ const SOLUTIONS_LINKS = [
 
 const CONTACT_INFO = {
   email: "info@alsaadtelecom.com",
-  phone: "+964 780 000 0000",
-  address: "Baghdad, Iraq",
+  phones: ["+964 771 800 9955", "+964 781 800 9955"],
+  address: "Baghdad HQ · offices across Iraq",
 } as const;
+
+const visibleSocialLinks = SOCIAL_LINKS.filter((social) => social.href !== "#");
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -109,14 +111,16 @@ export default function Footer() {
                   {CONTACT_INFO.email}
                 </a>
               </li>
-              <li>
-                <a
-                  href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}
-                  className={s.linkItem}
-                >
-                  {CONTACT_INFO.phone}
-                </a>
-              </li>
+              {CONTACT_INFO.phones.map((phone) => (
+                <li key={phone}>
+                  <a
+                    href={`tel:${phone.replace(/\s/g, "")}`}
+                    className={s.linkItem}
+                  >
+                    {phone}
+                  </a>
+                </li>
+              ))}
               <li>
                 <p className={s.addressText}>
                   {CONTACT_INFO.address}
@@ -140,8 +144,9 @@ export default function Footer() {
           </p>
 
           {/* Social Links */}
-          <div className={s.socialLinks}>
-            {SOCIAL_LINKS.map((social) => (
+          {visibleSocialLinks.length > 0 && (
+            <div className={s.socialLinks}>
+            {visibleSocialLinks.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
@@ -153,7 +158,8 @@ export default function Footer() {
                 {social.label}
               </a>
             ))}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </footer>

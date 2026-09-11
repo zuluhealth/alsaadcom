@@ -135,7 +135,16 @@ export default function IraqiFlag({ className }: IraqiFlagProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    const device = navigator as Navigator & {
+      connection?: { saveData?: boolean };
+    };
+    const shouldMount =
+      window.matchMedia("(min-width: 768px)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+      device.connection?.saveData !== true;
+
+    const capabilityFrame = requestAnimationFrame(() => setMounted(shouldMount));
+    return () => cancelAnimationFrame(capabilityFrame);
   }, []);
 
   return (

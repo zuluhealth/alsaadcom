@@ -26,33 +26,48 @@ export default function DynamicScene({
 }: DynamicSceneProps) {
   const [canRender, setCanRender] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [isPageVisible, setIsPageVisible] = useState(true);
 
   useEffect(() => {
-    // Check for WebGL support and device capability
-    try {
-      const canvas = document.createElement("canvas");
-      const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
-      if (!gl) {
-        setHasError(true);
-        return;
-      }
+    const capabilityFrame = requestAnimationFrame(() => {
+      try {
+        const canvas = document.createElement("canvas");
+        const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+        const device = navigator as Navigator & {
+          connection?: { saveData?: boolean };
+        };
+        const isConstrainedDevice =
+          device.connection?.saveData === true;
 
-      // Check for reduced motion preference
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-      if (prefersReducedMotion) {
-        setHasError(true);
-        return;
-      }
+        if (!gl || prefersReducedMotion || isConstrainedDevice) {
+          setHasError(true);
+          return;
+        }
 
-      setCanRender(true);
-    } catch {
-      setHasError(true);
-    }
+        setCanRender(true);
+      } catch {
+        setHasError(true);
+      }
+    });
+
+    return () => cancelAnimationFrame(capabilityFrame);
   }, []);
 
-  if (hasError || !canRender) {
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setIsPageVisible(!document.hidden);
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  if (hasError || !canRender || !isPageVisible) {
     return <WebGLFallback className={fallbackClassName || className} />;
   }
 

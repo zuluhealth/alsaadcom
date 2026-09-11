@@ -49,20 +49,43 @@
   background: linear-gradient(to left, $navy-950, transparent);
 }
 
-.marqueeOuter {
-  display: flex;
+@media (max-width: 767px) {
+  .fadeLeft,
+  .fadeRight {
+    width: 32px;
+  }
 }
 
 .marqueeTrack {
   display: flex;
+  flex-wrap: nowrap;
+  // Sized to the wrapper (not max-content) so each group's `min-width: 100%`
+  // resolves against the viewport rather than against its own content.
+}
+
+.marqueeGroup {
+  display: flex;
+  flex-shrink: 0;
   align-items: center;
-  gap: 72px;
-  animation: marquee 30s linear infinite;
+  justify-content: space-around;
+  // Never narrower than the screen: guarantees the trailing group has already
+  // covered the viewport before the leading one wraps, so no empty space can
+  // scroll in on wide displays. On ultrawide screens `space-around` spreads the
+  // logos evenly, keeping the seam gap identical to the interior gaps.
+  min-width: 100%;
+  animation: marquee 45s linear infinite;
+  will-change: transform;
 }
 
 @keyframes marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeGroup {
+    animation: none;
+  }
 }
 
 .partner {
@@ -70,7 +93,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  // Fixed slot: every logo reserves the same space whether or not its image has
+  // loaded yet, so both groups always measure identically and the loop can't
+  // drift out of alignment mid-animation.
+  width: 180px;
   height: 40px;
+  margin: 0 36px;
   opacity: 0.45;
   transition: opacity 300ms $ease-out-expo;
 
@@ -79,10 +107,23 @@
   }
 }
 
+.partnerStacked {
+  width: 220px;
+  height: 64px;
+}
+
 .partnerLogo {
   display: block;
-  height: 100%;
   width: auto;
-  max-width: 180px;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
+  // Render every mark uniformly white on the dark marquee, regardless of the
+  // source logo's colours.
+  filter: brightness(0) invert(1);
+}
+
+.partnerStacked .partnerLogo {
+  max-width: 220px;
 }

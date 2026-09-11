@@ -1,0 +1,201 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.filterRow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.filterLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.65);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: $font-mono;
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-radius: $radius-sm;
+  border: 1px solid rgba($white, 0.08);
+  background: rgba($white, 0.015);
+  color: rgba($grey-400, 0.85);
+  cursor: pointer;
+  transition: all 200ms $ease-out-expo;
+
+  &:hover {
+    color: $white;
+    border-color: rgba($white, 0.2);
+    background: rgba($white, 0.04);
+  }
+}
+
+.chipActive {
+  color: $navy-950;
+  background: $white;
+  border-color: $white;
+
+  &:hover {
+    color: $navy-950;
+    background: $grey-100;
+    border-color: $grey-100;
+  }
+}
+
+.chipCount {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  opacity: 0.7;
+}
+
+.featuredBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.featuredLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.7);
+}
+
+.featured {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 36px;
+  background: linear-gradient(
+    180deg,
+    rgba($white, 0.035) 0%,
+    rgba($white, 0.012) 100%
+  );
+  border: 1px solid rgba($white, 0.12);
+  border-radius: $radius-lg;
+  overflow: hidden;
+}
+
+.featuredMeta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-family: $font-mono;
+  font-size: 10.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.8);
+}
+
+.featuredTitle {
+  font-family: $font-heading;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: $white;
+  max-width: 720px;
+}
+
+.featuredScope {
+  font-family: $font-body;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba($grey-400, 0.9);
+  max-width: 760px;
+}
+
+.featuredOutcome {
+  font-family: $font-body;
+  font-size: 14px;
+  line-height: 1.65;
+  color: $white;
+  font-weight: 500;
+  max-width: 760px;
+  padding: 14px 16px;
+  border-left: 2px solid rgba($white, 0.3);
+  background: rgba($white, 0.02);
+}
+
+.featuredOutcomeLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.8);
+  font-weight: 500;
+  margin-right: 6px;
+}
+
+.featuredTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+}
+
+.featuredTag {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba($white, 0.9);
+  padding: 4px 10px;
+  border: 1px solid rgba($white, 0.15);
+  border-radius: $radius-sm;
+  background: rgba($white, 0.04);
+}
+
+.gridLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.65);
+  padding-top: 8px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 16px;
+
+  @include md {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.empty {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.6);
+  padding: 32px;
+  text-align: center;
+  border: 1px dashed rgba($white, 0.08);
+  border-radius: $radius-md;
+}

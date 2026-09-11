@@ -57,7 +57,7 @@ To provide, operate, and maintain our website and services. To process and respo
 Al Saad Telecom (AST)
 Baghdad, Iraq
 Email: info@alsaadtelecom.com
-Phone: +964 (0) 780 000 0000`,
+Phone: +964 771 800 9955 / +964 781 800 9955`,
   },
 ];
 

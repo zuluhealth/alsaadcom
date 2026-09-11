@@ -2,7 +2,7 @@
 
 import { useRef, useMemo, useEffect, useCallback, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Vector2, DoubleSide } from "three";
+import { Vector2, DoubleSide, ShaderMaterial } from "three";
 
 /* ─────────────────────────── Shaders ─────────────────────────── */
 
@@ -169,6 +169,7 @@ const fragmentShader = /* glsl */ `
 function SignalField({ visible }: { visible: boolean }) {
   const mouseRef = useRef(new Vector2(0, 0));
   const invalidateRef = useRef<(() => void) | null>(null);
+  const materialRef = useRef<ShaderMaterial>(null);
   const { size } = useThree();
 
   const uniforms = useMemo(
@@ -203,9 +204,11 @@ function SignalField({ visible }: { visible: boolean }) {
   useFrame(({ clock, invalidate }) => {
     invalidateRef.current = invalidate;
     if (!visible) return;
-    uniforms.uTime.value = clock.getElapsedTime();
-    uniforms.uMouse.value.copy(mouseRef.current);
-    uniforms.uResolution.value.set(size.width, size.height);
+    const material = materialRef.current;
+    if (!material) return;
+    material.uniforms.uTime.value = clock.getElapsedTime();
+    material.uniforms.uMouse.value.copy(mouseRef.current);
+    material.uniforms.uResolution.value.set(size.width, size.height);
     invalidate();
   });
 
@@ -213,6 +216,7 @@ function SignalField({ visible }: { visible: boolean }) {
     <mesh frustumCulled={false}>
       <planeGeometry args={[2, 2]} />
       <shaderMaterial
+        ref={materialRef}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         uniforms={uniforms}

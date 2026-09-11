@@ -2,7 +2,7 @@
 
 import { useRef, useMemo, useEffect, useCallback, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Vector2, DoubleSide } from "three";
+import { Vector2, DoubleSide, ShaderMaterial } from "three";
 
 /* ─────────────────────────── Shaders ─────────────────────────── */
 
@@ -188,6 +188,7 @@ const fragmentShader = /* glsl */ `
 function BlueSignalField({ visible }: { visible: boolean }) {
   const mouseRef = useRef(new Vector2(0, 0));
   const invalidateRef = useRef<(() => void) | null>(null);
+  const materialRef = useRef<ShaderMaterial>(null);
   const { size } = useThree();
 
   const uniforms = useMemo(
@@ -222,18 +223,20 @@ function BlueSignalField({ visible }: { visible: boolean }) {
 
   useFrame(({ clock, invalidate }) => {
     invalidateRef.current = invalidate;
+    const material = materialRef.current;
+    if (!material) return;
 
     /* Lerp visibility even during fade-out */
     const target = visible ? 1 : 0;
-    const prev = uniforms.uVisibility.value;
-    uniforms.uVisibility.value += (target - prev) * 0.03;
+    const prev = material.uniforms.uVisibility.value;
+    material.uniforms.uVisibility.value += (target - prev) * 0.03;
 
     /* If fully hidden and not transitioning, stop rendering */
-    if (uniforms.uVisibility.value < 0.001 && !visible) return;
+    if (material.uniforms.uVisibility.value < 0.001 && !visible) return;
 
-    uniforms.uTime.value = clock.getElapsedTime();
-    uniforms.uMouse.value.copy(mouseRef.current);
-    uniforms.uResolution.value.set(size.width, size.height);
+    material.uniforms.uTime.value = clock.getElapsedTime();
+    material.uniforms.uMouse.value.copy(mouseRef.current);
+    material.uniforms.uResolution.value.set(size.width, size.height);
     invalidate();
   });
 
@@ -241,6 +244,7 @@ function BlueSignalField({ visible }: { visible: boolean }) {
     <mesh frustumCulled={false}>
       <planeGeometry args={[2, 2]} />
       <shaderMaterial
+        ref={materialRef}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         uniforms={uniforms}

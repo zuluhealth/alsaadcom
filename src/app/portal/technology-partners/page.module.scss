@@ -1,0 +1,111 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 16px;
+
+  @include sm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include xl {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-lg;
+  background: rgba($white, 0.015);
+  transition: border-color 300ms $ease-out-expo, background 300ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.12);
+    background: rgba($white, 0.03);
+  }
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba($white, 0.05);
+}
+
+.logo {
+  width: auto;
+  height: 28px;
+  max-width: 140px;
+  object-fit: contain;
+  object-position: left center;
+  // White-filter: normalize mixed-color vendor logos to a single monochrome
+  // treatment against the AST black theme.
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cardName {
+  font-family: $font-heading;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: $white;
+}
+
+.cardBlurb {
+  font-family: $font-body;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: rgba($grey-400, 0.9);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 2px;
+}
+
+.chip {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba($grey-300, 0.85);
+  padding: 5px 10px;
+  border: 1px solid rgba($white, 0.12);
+  border-radius: $radius-sm;
+  background: rgba($white, 0.02);
+}
+
+.note {
+  font-family: $font-mono;
+  font-size: 11px;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: rgba($grey-400, 0.7);
+  max-width: 640px;
+  padding: 16px 18px;
+  border-left: 2px solid rgba($white, 0.2);
+  background: rgba($white, 0.012);
+  border-radius: $radius-sm;
+}

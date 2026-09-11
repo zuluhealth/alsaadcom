@@ -64,7 +64,7 @@ function AboutHero() {
           className={s.heroDesc}
         >
           A trusted systems integrator specializing in secured communications,
-          security infrastructure, and telecommunications for over 25 years.
+          security infrastructure, and telecommunications for 22 years.
         </motion.p>
       </div>
     </section>
@@ -92,11 +92,11 @@ function Story() {
         >
           <div className={s.storyText}>
             <p>
-              For over 25 years, AST has been a trusted systems integrator
+              For 22 years, AST has been a trusted systems integrator
               specializing in secured communications, security infrastructure,
               and telecommunications. What began as a focused operation has grown
-              into a multidisciplinary engineering firm with two offices in Iraq
-              and a reputation built on technical excellence, long-term
+              into a multidisciplinary engineering firm with six offices across
+              Iraq and a reputation built on technical excellence, long-term
               partnerships, and an unwavering commitment to getting the job done
               right.
             </p>
@@ -125,8 +125,8 @@ function Story() {
               who operate our solutions, ensuring they have the knowledge and
               confidence to maximize the capabilities we put in their hands. That
               philosophy&mdash;building lasting capacity, not just delivering
-              equipment&mdash;is what has kept our clients coming back for over
-              two decades.
+              equipment&mdash;is what has kept our clients coming back for
+              22 years.
             </p>
           </div>
         </motion.div>

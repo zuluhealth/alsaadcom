@@ -11,6 +11,11 @@ import {
 
 const PARTICLE_COUNT = 200;
 
+function seededRandom(seed: number) {
+  const value = Math.sin(seed * 12.9898) * 43758.5453;
+  return value - Math.floor(value);
+}
+
 function Particles() {
   const pointsRef = useRef<{ geometry: BufferGeometry }>(null);
 
@@ -24,16 +29,16 @@ function Particles() {
     const grey = new Color("#94A3B8");
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 20;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 12;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 8;
+      positions[i * 3] = (seededRandom(i * 5 + 1) - 0.5) * 20;
+      positions[i * 3 + 1] = (seededRandom(i * 5 + 2) - 0.5) * 12;
+      positions[i * 3 + 2] = (seededRandom(i * 5 + 3) - 0.5) * 8;
 
-      const color = Math.random() > 0.3 ? white : grey;
+      const color = seededRandom(i * 5 + 4) > 0.3 ? white : grey;
       colors[i * 3] = color.r;
       colors[i * 3 + 1] = color.g;
       colors[i * 3 + 2] = color.b;
 
-      sizes[i] = 0.5 + Math.random() * 1.5;
+      sizes[i] = 0.5 + seededRandom(i * 5 + 5) * 1.5;
     }
 
     geo.setAttribute("position", new Float32BufferAttribute(positions, 3));

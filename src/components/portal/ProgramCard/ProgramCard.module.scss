@@ -1,0 +1,82 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px;
+  background: rgba($white, 0.015);
+  border: 1px solid rgba($white, 0.06);
+  border-radius: $radius-lg;
+  transition: border-color 300ms $ease-out-expo, background 300ms $ease-out-expo;
+
+  &:hover {
+    border-color: rgba($white, 0.12);
+    background: rgba($white, 0.025);
+  }
+}
+
+.meta {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.7);
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: $white;
+}
+
+.scope {
+  font-family: $font-body;
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba($grey-400, 0.85);
+}
+
+.outcome {
+  font-family: $font-body;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: $white;
+  font-weight: 500;
+}
+
+.outcomeLabel {
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba($grey-400, 0.85);
+  font-weight: 500;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  padding-top: 4px;
+}
+
+.tag {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba($grey-400, 0.85);
+  padding: 4px 8px;
+  border: 1px solid rgba($white, 0.08);
+  border-radius: $radius-sm;
+  background: rgba($white, 0.02);
+}

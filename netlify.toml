@@ -1,0 +1,25 @@
+# Netlify deployment. Configure strong INVITE_SECRET and ADMIN_PASSPHRASE
+# in the Functions/runtime environment. Deployed portals fail closed when
+# credentials are missing; use signed invites for deployed previews.
+# The invite ledger and admin login budget persist in Netlify Blobs. See SETUP.md.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+  # With the invite env vars set, secrets scanning fails the deploy. It finds
+  # both values in Turbopack's build cache (.next/cache/turbopack/*.sst), which
+  # records the environment the build ran under. Those cache files are build
+  # scratch — they are not served, and both vars are read only by server code
+  # (src/lib/portal/invites.ts).
+  #
+  # Only the cache directory is exempted, deliberately in preference to
+  # SECRETS_SCAN_OMIT_KEYS: the scanner keeps checking these same keys against
+  # everything that actually ships, so a real leak into a page or a client
+  # bundle would still fail the build.
+  #
+  # This mirrors the same fix in the Lunasat repo, where the failure was hit
+  # for real and diagnosed from the build log.
+  SECRETS_SCAN_OMIT_PATHS = ".next/cache/**,.netlify/.next/cache/**"

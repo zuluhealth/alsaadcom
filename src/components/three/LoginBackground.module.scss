@@ -1,0 +1,56 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: $navy-950;
+}
+
+/* Mobile fallback — subtle radial gradient, lighter than Three.js. */
+.fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 50%,
+      rgba(20, 50, 120, 0.18) 0%,
+      rgba(8, 20, 60, 0.08) 35%,
+      rgba(0, 0, 0, 0) 70%
+    ),
+    linear-gradient(180deg, rgba($white, 0.015) 0%, rgba(0, 0, 0, 0) 60%);
+}
+
+/* Three.js scene — only mounted on desktop / non-reduced-motion. */
+.scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Defensive — also hide via CSS if it somehow mounts on small screens. */
+  @media (max-width: 767px) {
+    display: none;
+  }
+
+  > div,
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+/* Vignette to push content forward and keep edges clean. */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 100% 80% at 50% 50%,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+}

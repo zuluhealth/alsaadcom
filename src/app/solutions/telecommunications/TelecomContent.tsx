@@ -20,15 +20,15 @@ export default function TelecomContent() {
   return (
     <>
       <section ref={heroRef} className={s.hero}>
-        <div className={s.heroBgImage}>
+        <div className={s.heroBgImage} aria-hidden="true">
           <Image
-            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600&q=80"
-            alt="Telecommunications infrastructure"
+            src="/images/solutions/telecommunications-infrastructure.webp"
+            alt=""
             fill
             className={s.heroImage}
             priority
             sizes="100vw"
-            quality={65}
+            quality={75}
           />
           <div className={s.heroBgOverlay} />
         </div>

@@ -20,15 +20,15 @@ export default function SecurityContent() {
   return (
     <>
       <section ref={heroRef} className={s.hero}>
-        <div className={s.heroBgImage}>
+        <div className={s.heroBgImage} aria-hidden="true">
           <Image
-            src="https://images.unsplash.com/photo-1580752300992-559f8e0734e0?w=1600&q=80"
-            alt="Security infrastructure"
+            src="/images/solutions/security-infrastructure.webp"
+            alt=""
             fill
             className={s.heroImage}
             priority
             sizes="100vw"
-            quality={65}
+            quality={75}
           />
           <div className={s.heroBgOverlay} />
         </div>

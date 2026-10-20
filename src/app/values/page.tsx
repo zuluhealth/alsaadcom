@@ -302,8 +302,9 @@ function ValuesCards() {
           }}
           className={s.complianceNote}
         >
-          AST is a TRACE-certified company that abides by FCPA and UK
-          Anti-Bribery standards and more.
+          AST is Tcertified by Ethixbase360 and is committed to complying with
+          applicable anti-bribery and anti-corruption laws, including the U.S.
+          Foreign Corrupt Practices Act (FCPA) and the UK Bribery Act
         </motion.p>
       </div>
     </section>

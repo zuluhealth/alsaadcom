@@ -1,8 +1,7 @@
 import crypto from "node:crypto";
 import { NextResponse, type NextRequest } from "next/server";
 import { PORTAL_SESSION_COOKIE } from "@/lib/portal/auth";
-import { getPartnerSessionClaims } from "@/lib/portal/session-claims";
-import { privateRoute, reportPortalError } from "@/lib/portal/diagnostics";
+import { validatePartnerSession } from "@/lib/portal/authorization";
 import { contentSecurityPolicy } from "@/lib/security-headers";
 
 export async function proxy(request: NextRequest) {
@@ -16,18 +15,12 @@ export async function proxy(request: NextRequest) {
 
   if (request.nextUrl.pathname === "/portal" || request.nextUrl.pathname.startsWith("/portal/")) {
     try {
-      // Verify the signed cookie here without opening invitation storage.
-      // Each portal page/action performs the full active-invite check on the server.
-      const session = getPartnerSessionClaims(request.cookies.get(PORTAL_SESSION_COOKIE)?.value);
+      const session = await validatePartnerSession(request.cookies.get(PORTAL_SESSION_COOKIE)?.value);
       response = session
         ? NextResponse.next({ request: { headers: requestHeaders } })
         : NextResponse.redirect(new URL("/partner-login", request.url));
-    } catch (error) {
-      const reference = reportPortalError(error, { stage: "proxy", route: privateRoute(request.nextUrl.pathname)! });
-      response = new NextResponse(`Partner access is temporarily unavailable.\nReference: ${reference}`, {
-        status: 503,
-        headers: { "X-Portal-Error-ID": reference, "Content-Type": "text/plain; charset=utf-8" },
-      });
+    } catch {
+      response = new NextResponse("Partner access is temporarily unavailable.", { status: 503 });
     }
   } else {
     response = NextResponse.next({ request: { headers: requestHeaders } });

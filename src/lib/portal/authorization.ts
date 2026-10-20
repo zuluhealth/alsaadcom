@@ -1,25 +1,27 @@
 import "server-only";
-import { getPartnerSessionClaims } from "./session-claims";
+import { inviteModeEnabled, previewModeEnabled, unsealSession } from "./auth";
 import { getActiveInvite } from "./invites";
 import type { PartnerSession } from "./types";
 
-// Authoritative check for server components/actions. Keep storage access out of
-// the proxy: Netlify runs it separately from the application server.
+// Used both at the route boundary and by server components/actions.
 export async function validatePartnerSession(raw: string | undefined): Promise<PartnerSession | null> {
-  const claims = getPartnerSessionClaims(raw);
-  if (!claims) return null;
-  if ("inviteId" in claims) {
-    const invite = await getActiveInvite(claims.inviteId);
+  if (!inviteModeEnabled() && !previewModeEnabled()) return null;
+  const data = unsealSession("partner", raw);
+  if (!data || typeof data.ndaAcceptedAt !== "string" || !Number.isFinite(Date.parse(data.ndaAcceptedAt))) return null;
+  if (inviteModeEnabled()) {
+    if (typeof data.inviteId !== "string") return null;
+    const invite = await getActiveInvite(data.inviteId);
     if (!invite) return null;
     // Identity comes from the current server ledger, never from client claims.
     return {
       email: invite.email, fullName: invite.name, organizationName: invite.organization,
-      inviteId: invite.id, ndaAcceptedAt: claims.ndaAcceptedAt, authenticated: true,
+      inviteId: invite.id, ndaAcceptedAt: data.ndaAcceptedAt, authenticated: true,
     };
   }
+  if (data.preview !== true || typeof data.email !== "string" || typeof data.fullName !== "string") return null;
   return {
-    email: claims.email, fullName: claims.fullName,
-    organizationName: claims.organizationName,
-    ndaAcceptedAt: claims.ndaAcceptedAt, authenticated: true,
+    email: data.email, fullName: data.fullName,
+    organizationName: typeof data.organizationName === "string" ? data.organizationName : undefined,
+    ndaAcceptedAt: data.ndaAcceptedAt, authenticated: true,
   };
 }

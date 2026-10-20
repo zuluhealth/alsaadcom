@@ -95,7 +95,7 @@ function Story() {
               For 22 years, AST has been a trusted systems integrator
               specializing in secured communications, security infrastructure,
               and telecommunications. What began as a focused operation has grown
-              into a multidisciplinary engineering firm with six offices across
+              into a multidisciplinary engineering firm with offices across
               Iraq and a reputation built on technical excellence, long-term
               partnerships, and an unwavering commitment to getting the job done
               right.

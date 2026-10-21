@@ -1,0 +1,19 @@
+diff --git a/dist/utils/get-root-dirs.js b/dist/utils/get-root-dirs.js
+--- a/dist/utils/get-root-dirs.js
++++ b/dist/utils/get-root-dirs.js
+@@ -14,6 +14,13 @@ var _fastglob = require("fast-glob");
+  */ var processRootDir = function(rootDir) {
+-    return (0, _fastglob.globSync)(rootDir.replace(/\\/g, '/'), {
++    // Preserve picomatch's bare groups while leaving character classes intact.
++    var pattern = rootDir.replace(/\\/g, '/').replace(/(\[[^\]]*\])|(?<![?*+@!])\(/g, function(match, characterClass) {
++        return characterClass || '@(';
++    });
++    return (0, _fastglob.globSync)(pattern, {
+-        onlyDirectories: true
++        follow: true,
++        absolute: require("node:path").isAbsolute(rootDir)
++    }).filter(function(directory) {
++        return require("node:fs").statSync(directory, { throwIfNoEntry: false })?.isDirectory();
+     });
+ };
+ var getRootDirs = function(context) {

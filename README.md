@@ -2,16 +2,26 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+Use pnpm 10.32.1, as pinned in `package.json`. Install dependencies before
+starting the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install --frozen-lockfile
 pnpm dev
-# or
-bun dev
+```
+
+Keep `patches/`, `pnpm-workspace.yaml`, and `pnpm-lock.yaml` in source packages.
+pnpm applies the dependency overrides and patches; installing with npm or Yarn
+does not reproduce the tested dependency tree. See `patches/README.md`.
+
+Before deploying, run:
+
+```bash
+pnpm run test:security
+pnpm run test:dependencies
+pnpm run lint
+pnpm audit --audit-level=high
+pnpm run build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

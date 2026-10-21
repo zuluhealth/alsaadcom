@@ -39,6 +39,9 @@ jobs:
       - name: security regression tests
         run: pnpm run test:security
 
+      - name: dependency integration tests
+        run: pnpm run test:dependencies
+
       - name: dependency security audit
         run: pnpm audit --audit-level=high
 
